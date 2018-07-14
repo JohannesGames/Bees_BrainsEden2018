@@ -1,23 +1,21 @@
 fileFormatVersion: 2
-guid: 2187ac011c619d847be772dfaef9b510
+guid: 6b20e6e4ebab4d74e93efc4346e1197a
 ModelImporter:
   serializedVersion: 22
   fileIDToRecycleName:
-    100000: Cylinder001
-    100002: Cylinder002
-    100004: //RootNode
-    400000: Cylinder001
-    400002: Cylinder002
-    400004: //RootNode
+    100000: //RootNode
+    100002: Hedra001
+    100004: Hedra002
+    400000: //RootNode
+    400002: Hedra001
+    400004: Hedra002
     2100000: No Name
-    2300000: Cylinder001
-    2300002: Cylinder002
-    3300000: Cylinder001
-    3300002: Cylinder002
-    4300000: Cylinder001
-    4300002: Cylinder002
-    7400000: Take 001
-    9500000: //RootNode
+    2300000: Hedra001
+    2300002: Hedra002
+    3300000: Hedra001
+    3300002: Hedra002
+    4300000: Hedra001
+    4300002: Hedra002
   externalObjects: {}
   materials:
     importMaterials: 1
@@ -93,7 +91,7 @@ ModelImporter:
     hasExtraRoot: 0
     skeletonHasParents: 1
   lastHumanDescriptionAvatarSource: {instanceID: 0}
-  animationType: 2
+  animationType: 0
   humanoidOversampling: 1
   additionalBone: 0
   userData: 
