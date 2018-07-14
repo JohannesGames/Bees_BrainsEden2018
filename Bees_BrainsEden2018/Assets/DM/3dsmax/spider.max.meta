@@ -1,21 +1,21 @@
 fileFormatVersion: 2
-guid: 6107f78de89db084991c02a1830a126e
+guid: ada44f8b05739f5488aa47ce18dfcc29
 ModelImporter:
   serializedVersion: 22
   fileIDToRecycleName:
-    100000: Cylinder001
-    100002: Cylinder002
+    100000: Hedra001
+    100002: Hedra002
     100004: //RootNode
-    400000: Cylinder001
-    400002: Cylinder002
+    400000: Hedra001
+    400002: Hedra002
     400004: //RootNode
     2100000: No Name
-    2300000: Cylinder001
-    2300002: Cylinder002
-    3300000: Cylinder001
-    3300002: Cylinder002
-    4300000: Cylinder001
-    4300002: Cylinder002
+    2300000: Hedra001
+    2300002: Hedra002
+    3300000: Hedra001
+    3300002: Hedra002
+    4300000: Hedra001
+    4300002: Hedra002
   externalObjects: {}
   materials:
     importMaterials: 1
