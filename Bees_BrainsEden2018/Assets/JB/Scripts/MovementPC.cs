@@ -6,6 +6,7 @@ using Cinemachine;
 public class MovementPC : MonoBehaviour
 {
     [SerializeField] float movementSpeed;
+    [SerializeField] float currentMovementSpeed;
     [SerializeField] float turnSpeed;
     [Tooltip("How fast an angle of direction resets when the button is released")]
     [SerializeField] float resetAngleSpeed;
@@ -47,6 +48,7 @@ public class MovementPC : MonoBehaviour
         moveDirection = transform.TransformDirection(Vector3.forward);
         camNoiseComponent = GameManager.gm.playerCam.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
         camNoiseValue = camNoiseCurrentValue = camNoiseComponent.m_AmplitudeGain;
+        currentMovementSpeed = movementSpeed;
     }
 
 
@@ -196,9 +198,9 @@ public class MovementPC : MonoBehaviour
 
         moveDirection.Normalize();
 
-        nextPosition = transform.position + (moveDirection * Time.deltaTime * movementSpeed);   // normal movement
+        nextPosition = transform.position + (moveDirection * Time.deltaTime * currentMovementSpeed);   // normal movement
 
-        movementSpeed += acceleration * Time.deltaTime;
+        currentMovementSpeed += acceleration * Time.deltaTime;
 
         transform.position = nextPosition;
     }
