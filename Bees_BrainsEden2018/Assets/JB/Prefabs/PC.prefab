@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 33219707929890282}
   - component: {fileID: 23139912509513772}
   - component: {fileID: 95561867583428264}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Wing - Small Right
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -40,7 +40,7 @@ GameObject:
   - component: {fileID: 33107972115723106}
   - component: {fileID: 23441492316278298}
   - component: {fileID: 95381816984673764}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Wing - Big Right
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -56,7 +56,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4502051134927696}
   - component: {fileID: 95328385814808710}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: bee3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -74,7 +74,7 @@ GameObject:
   - component: {fileID: 33840876778771482}
   - component: {fileID: 23924128335305888}
   - component: {fileID: 95120260428597526}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Wing - Small Left
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -91,7 +91,7 @@ GameObject:
   - component: {fileID: 4752883936930322}
   - component: {fileID: 33758538705964092}
   - component: {fileID: 23993596087790212}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Body
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -107,7 +107,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4127111988613988}
   - component: {fileID: 114179176586839842}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: PC
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -125,7 +125,7 @@ GameObject:
   - component: {fileID: 33681819694160804}
   - component: {fileID: 23741477726243240}
   - component: {fileID: 95068893414529114}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Wing - Big Left
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -141,6 +141,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4682405114277336}
   - component: {fileID: 136355070884904190}
+  - component: {fileID: 54415715394088808}
   m_Layer: 9
   m_Name: Collider
   m_TagString: Untagged
@@ -469,6 +470,21 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1616014047294868}
   m_Mesh: {fileID: 4300006, guid: 5514fa269eb9c804f8dca054947ad264, type: 3}
+--- !u!54 &54415715394088808
+Rigidbody:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1910418004677398}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!95 &95068893414529114
 Animator:
   serializedVersion: 3
