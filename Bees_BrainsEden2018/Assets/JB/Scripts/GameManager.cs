@@ -13,6 +13,8 @@ public class GameManager : MonoBehaviour
 
     public LayerMask pcLayer;
 
+    public GardenLoader gl;
+
     // Boundaries
     [Header("Boundaries")]
     public float boundaryTop;
@@ -33,6 +35,10 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    private void Start()
+    {
+        gl.SpawnFirstGarden();
+    }
 
     void Update()
     {

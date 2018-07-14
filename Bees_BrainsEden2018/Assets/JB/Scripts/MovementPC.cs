@@ -6,6 +6,7 @@ using Cinemachine;
 public class MovementPC : MonoBehaviour
 {
     [SerializeField] Animator anim;
+    [SerializeField] Transform groundPlane;
 
     [Header("Basic movement")]
     [SerializeField] float movementSpeed;
@@ -285,6 +286,9 @@ public class MovementPC : MonoBehaviour
         currentMovementSpeed += acceleration * Time.deltaTime;
 
         transform.position = nextPosition;
+
+        nextPosition.y = nextPosition.x = 0;
+        groundPlane.position = nextPosition;
     }
 
     void AddUnreliableMovement()

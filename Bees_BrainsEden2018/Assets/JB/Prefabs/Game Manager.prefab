@@ -20,6 +20,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4807137332611244}
   - component: {fileID: 114026338907039858}
+  - component: {fileID: 114668830621252370}
   m_Layer: 0
   m_Name: Game Manager
   m_TagString: Untagged
@@ -53,9 +54,9 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1714677170825622}
-  m_LocalRotation: {x: 0.098537624, y: -0.000000015343565, z: -0.000000016271493,
+  m_LocalRotation: {x: 0.098537624, y: 0.0000000017790761, z: -0.000000017966949,
     w: 0.99513334}
-  m_LocalPosition: {x: 0, y: 2, z: -39.2}
+  m_LocalPosition: {x: 0, y: 12, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4807137332611244}
@@ -93,7 +94,7 @@ Camera:
     height: 1
   near clip plane: 0.1
   far clip plane: 5000
-  field of view: 30
+  field of view: 20
   orthographic: 0
   orthographic size: 5
   m_Depth: -1
@@ -134,8 +135,9 @@ MonoBehaviour:
   pcLayer:
     serializedVersion: 2
     m_Bits: 512
-  boundaryTop: 20
-  boundaryBottom: -20
+  gl: {fileID: 114668830621252370}
+  boundaryTop: 42
+  boundaryBottom: 2
   boundaryLeft: -20
   boundaryRight: 20
   isOutOfBounds: 0
@@ -175,6 +177,23 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: Cinemachine.CinemachineBrain+VcamEvent, Cinemachine, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
+--- !u!114 &114668830621252370
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1628162533056242}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 75f7863cdd89dad4f91629db5fcdb3f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  allGardenTiles: []
+  tileLength: 40
+  tilesPerGarden: 10
+  allGardenDividers:
+  - {fileID: 114923439714549072, guid: 800737ee8fde6734fbbaae99956080ad, type: 2}
+  nextDivider: {fileID: 0}
 --- !u!114 &114833650158731304
 MonoBehaviour:
   m_ObjectHideFlags: 1

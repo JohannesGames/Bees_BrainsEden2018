@@ -181,7 +181,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1827286204447382}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -29.2}
+  m_LocalPosition: {x: 0, y: 10, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4502051134927696}
@@ -414,7 +414,7 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 2100000, guid: 3cfe34482ce699b459e2b273a60b6291, type: 3}
+  - {fileID: 10302, guid: 0000000000000000f000000000000000, type: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -440,35 +440,35 @@ MeshFilter:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1401659043561556}
-  m_Mesh: {fileID: 4300002, guid: 3cfe34482ce699b459e2b273a60b6291, type: 3}
+  m_Mesh: {fileID: 4300002, guid: 5514fa269eb9c804f8dca054947ad264, type: 3}
 --- !u!33 &33219707929890282
 MeshFilter:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1115144734755582}
-  m_Mesh: {fileID: 4300008, guid: 3cfe34482ce699b459e2b273a60b6291, type: 3}
+  m_Mesh: {fileID: 4300008, guid: 5514fa269eb9c804f8dca054947ad264, type: 3}
 --- !u!33 &33681819694160804
 MeshFilter:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1901595051202538}
-  m_Mesh: {fileID: 4300004, guid: 3cfe34482ce699b459e2b273a60b6291, type: 3}
+  m_Mesh: {fileID: 4300004, guid: 5514fa269eb9c804f8dca054947ad264, type: 3}
 --- !u!33 &33758538705964092
 MeshFilter:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1675187298481064}
-  m_Mesh: {fileID: 4300000, guid: 3cfe34482ce699b459e2b273a60b6291, type: 3}
+  m_Mesh: {fileID: 4300000, guid: 5514fa269eb9c804f8dca054947ad264, type: 3}
 --- !u!33 &33840876778771482
 MeshFilter:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1616014047294868}
-  m_Mesh: {fileID: 4300006, guid: 3cfe34482ce699b459e2b273a60b6291, type: 3}
+  m_Mesh: {fileID: 4300006, guid: 5514fa269eb9c804f8dca054947ad264, type: 3}
 --- !u!95 &95068893414529114
 Animator:
   serializedVersion: 3
@@ -571,6 +571,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   anim: {fileID: 95328385814808710}
+  groundPlane: {fileID: 0}
   movementSpeed: 20
   currentMovementSpeed: 0
   turnSpeed: 3
