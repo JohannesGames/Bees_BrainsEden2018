@@ -11,6 +11,8 @@ public class GameManager : MonoBehaviour
 
     public Cinemachine.CinemachineVirtualCamera playerCam;
 
+    public LayerMask pcLayer;
+
     // Boundaries
     [Header("Boundaries")]
     public float boundaryTop;
@@ -53,7 +55,6 @@ public class GameManager : MonoBehaviour
                 pc.StartCoroutine(pc.OutOfBoundsReturnTop());
                 pc.down = true;
                 pc.up = false;
-                Debug.Log("Moving down");
             }
             else if (pc.transform.position.y < boundaryBottom)
             {
@@ -62,7 +63,6 @@ public class GameManager : MonoBehaviour
                 pc.StartCoroutine(pc.OutOfBoundsReturnBottom());
                 pc.up = true;
                 pc.down = false;
-                Debug.Log("Moving up");
             }
 
             if (pc.transform.position.x < boundaryLeft)
@@ -72,7 +72,6 @@ public class GameManager : MonoBehaviour
                 pc.StartCoroutine(pc.OutOfBoundsReturnLeft());
                 pc.left = false;
                 pc.right = true;
-                Debug.Log("Moving right");
             }
             else if (pc.transform.position.x > boundaryRight)
             {
@@ -81,7 +80,6 @@ public class GameManager : MonoBehaviour
                 pc.StartCoroutine(pc.OutOfBoundsReturnRight());
                 pc.left = true;
                 pc.right = false;
-                Debug.Log("Moving left");
             }
         }
     }

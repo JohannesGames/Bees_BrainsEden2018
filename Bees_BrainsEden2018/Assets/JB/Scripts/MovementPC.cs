@@ -5,6 +5,9 @@ using Cinemachine;
 
 public class MovementPC : MonoBehaviour
 {
+    [SerializeField] Animator anim;
+
+    [Header("Basic movement")]
     [SerializeField] float movementSpeed;
     [SerializeField] float currentMovementSpeed;
     [SerializeField] float turnSpeed;
@@ -35,18 +38,33 @@ public class MovementPC : MonoBehaviour
     public float addNewUnreliableVectorEvery;
     float unreliableTime;
     public float unreliabilityAmount;
+    float unreliabilityAmountLerpFromValue;
     public float unreliabilityAmountMax;
     CinemachineBasicMultiChannelPerlin camNoiseComponent;
-    [Header("Camera")]
+    [Header("Camera Noise")]
     public float camNoiseValue;
     public float camNoiseMaxValue;
     public float camNoiseCurrentValue;
     public float camNoiseUnreliabilityRate;
+    float camNoiseLerpFromValue;
+    [Header("Camera FOV")]
+    public float camMaxFOV;
+    public float currentCamFOV;
+    float camFOVLerpValue;
+    float camFOVNormal;
+
+    [Header("Nectar Pickup")]
+    [SerializeField] float nectarResetLength;
+    [SerializeField] AnimationCurve resetCurve;
+    float nectarResetTimer;
+    float nectarResetProgress;
+    bool isNectarResetting;
 
     void Start()
     {
         moveDirection = transform.TransformDirection(Vector3.forward);
         camNoiseComponent = GameManager.gm.playerCam.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
+        currentCamFOV = camFOVNormal = GameManager.gm.playerCam.m_Lens.FieldOfView;
         camNoiseValue = camNoiseCurrentValue = camNoiseComponent.m_AmplitudeGain;
         currentMovementSpeed = movementSpeed;
     }
@@ -190,6 +208,70 @@ public class MovementPC : MonoBehaviour
                 moveDirection += Vector3.left * Time.deltaTime * resetAngleSpeed;
             }
         }
+
+        #region Movement Animation
+        // Movement animations
+        if (!up && !down && !left && !right)
+        {
+            // if no input
+            // reset up
+            if (Mathf.Abs(anim.GetFloat("up")) < .001f)
+            {
+                anim.SetFloat("up", 0);
+            }
+            else
+                anim.SetFloat("up", Mathf.Lerp(anim.GetFloat("up"), 0, Time.deltaTime * turnSpeed));
+
+            // reset left
+            if (Mathf.Abs(anim.GetFloat("left")) < .001f)
+            {
+                anim.SetFloat("left", 0);
+            }
+            else
+                anim.SetFloat("left", Mathf.Lerp(anim.GetFloat("left"), 0, Time.deltaTime * turnSpeed));
+        }
+
+        // up and down
+        if (up)
+        {
+            if (anim.GetFloat("up") > .999f)
+            {
+                anim.SetFloat("up", 1);
+            }
+            else
+                anim.SetFloat("up", Mathf.Lerp(anim.GetFloat("up"), 1, Time.deltaTime * turnSpeed));
+        }
+        else if (down)
+        {
+            if (anim.GetFloat("up") < -.999f)
+            {
+                anim.SetFloat("up", -1);
+            }
+            else
+                anim.SetFloat("up", Mathf.Lerp(anim.GetFloat("up"), -1, Time.deltaTime * turnSpeed));
+        }
+
+        // left and right
+        if (left)
+        {
+            if (anim.GetFloat("left") > .999f)
+            {
+                anim.SetFloat("left", 1);
+            }
+            else
+                anim.SetFloat("left", Mathf.Lerp(anim.GetFloat("left"), 1, Time.deltaTime * turnSpeed));
+        }
+        else if (right)
+        {
+            if (anim.GetFloat("left") < -.999f)
+            {
+                anim.SetFloat("left", -1);
+            }
+            else
+                anim.SetFloat("left", Mathf.Lerp(anim.GetFloat("left"), -1, Time.deltaTime * turnSpeed));
+        }
+
+        #endregion
     }
 
     void TranslationPC()
@@ -226,6 +308,8 @@ public class MovementPC : MonoBehaviour
                         camNoiseCurrentValue = camNoiseMaxValue;
                     }
                     camNoiseComponent.m_AmplitudeGain = camNoiseCurrentValue;
+                    // Camera FOV
+                    GameManager.gm.playerCam.m_Lens.FieldOfView = Mathf.Lerp(camFOVNormal, camMaxFOV, 1 -(camNoiseMaxValue - camNoiseCurrentValue) / (camNoiseMaxValue - camNoiseValue));
                 }
                 else
                 {
@@ -289,6 +373,36 @@ public class MovementPC : MonoBehaviour
         }
         left = false;
         GameManager.gm.isOutOfBounds = false;
+    }
+
+    #endregion
+
+    #region On nectar pickup
+
+    public void OnNectarPickup()
+    {
+        Debug.Log("Nectar reset");
+        isNectarResetting = true;
+        nectarResetProgress = nectarResetTimer = 0;
+        camNoiseLerpFromValue = camNoiseComponent.m_AmplitudeGain;
+        camFOVLerpValue = GameManager.gm.playerCam.m_Lens.FieldOfView;
+        StartCoroutine(NectarReset());
+    }
+
+    IEnumerator NectarReset()
+    {
+        while (nectarResetProgress < 1)
+        {
+            nectarResetTimer += Time.deltaTime;
+            nectarResetProgress = nectarResetTimer / nectarResetLength;
+
+            camNoiseComponent.m_AmplitudeGain = camNoiseCurrentValue = Mathf.Lerp(camNoiseLerpFromValue, camNoiseValue, resetCurve.Evaluate(nectarResetProgress));
+            unreliabilityAmount = Mathf.Lerp(unreliabilityAmountLerpFromValue, 0, resetCurve.Evaluate(nectarResetProgress));
+            GameManager.gm.playerCam.m_Lens.FieldOfView = Mathf.Lerp(camFOVLerpValue, camFOVNormal, resetCurve.Evaluate(nectarResetProgress));
+            yield return null;
+        }
+
+        isNectarResetting = false;
     }
 
     #endregion

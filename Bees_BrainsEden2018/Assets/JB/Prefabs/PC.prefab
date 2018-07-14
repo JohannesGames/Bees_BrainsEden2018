@@ -19,6 +19,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4304554201649102}
+  - component: {fileID: 95354320349208854}
   m_Layer: 0
   m_Name: bee2
   m_TagString: Untagged
@@ -37,7 +38,7 @@ GameObject:
   - component: {fileID: 33894518570435868}
   - component: {fileID: 23419736306532628}
   m_Layer: 0
-  m_Name: Plane002
+  m_Name: Wing - Big Left
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -53,8 +54,9 @@ GameObject:
   - component: {fileID: 4638378105494744}
   - component: {fileID: 33399627256154846}
   - component: {fileID: 23197005142288490}
+  - component: {fileID: 95625573919864992}
   m_Layer: 0
-  m_Name: Plane001
+  m_Name: Wing - Big Right
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -71,7 +73,7 @@ GameObject:
   - component: {fileID: 33940280596031172}
   - component: {fileID: 23426399081302202}
   m_Layer: 0
-  m_Name: Plane003
+  m_Name: Wing - Small Left
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -88,22 +90,7 @@ GameObject:
   - component: {fileID: 33288589389316156}
   - component: {fileID: 23225760235990478}
   m_Layer: 0
-  m_Name: Plane004
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!1 &1633804477017156
-GameObject:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 5
-  m_Component:
-  - component: {fileID: 4468023213652482}
-  m_Layer: 0
-  m_Name: Cylinder001
+  m_Name: Wing - Small Right
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -120,7 +107,7 @@ GameObject:
   - component: {fileID: 33961876854637050}
   - component: {fileID: 23668169135319724}
   m_Layer: 0
-  m_Name: Sphere001
+  m_Name: Body
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -183,7 +170,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4304554201649102}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4285114192443932
 Transform:
@@ -196,7 +183,7 @@ Transform:
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_Children: []
   m_Father: {fileID: 4304554201649102}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4304554201649102
 Transform:
@@ -208,7 +195,6 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 4468023213652482}
   - {fileID: 4638378105494744}
   - {fileID: 4215607144295088}
   - {fileID: 4285114192443932}
@@ -216,19 +202,6 @@ Transform:
   - {fileID: 4809310198967302}
   - {fileID: 4682405114277336}
   m_Father: {fileID: 4127111988613988}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!4 &4468023213652482
-Transform:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1633804477017156}
-  m_LocalRotation: {x: 0.000000015454312, y: 0.7071067, z: -0.000000015454308, w: 0.7071068}
-  m_LocalPosition: {x: 0.20482652, y: 0.09619479, z: 0.2934892}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 4304554201649102}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4638378105494744
@@ -242,7 +215,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4304554201649102}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4682405114277336
 Transform:
@@ -255,7 +228,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4304554201649102}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
 --- !u!4 &4809310198967302
 Transform:
@@ -268,7 +241,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4304554201649102}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4812202829162328
 Transform:
@@ -281,7 +254,7 @@ Transform:
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_Children: []
   m_Father: {fileID: 4304554201649102}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!23 &23197005142288490
 MeshRenderer:
@@ -493,6 +466,42 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1767341868436694}
   m_Mesh: {fileID: 4300000, guid: 80c273d6fc3fb074ebd91666cde0ea1b, type: 3}
+--- !u!95 &95354320349208854
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1076993854666406}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 5cc915844b91f1647b75a68fd464fc32, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!95 &95625573919864992
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1145726707042798}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 255cd7b57fdbb6c4b9a2bd6a7ec47ee9, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!114 &114179176586839842
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -504,6 +513,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4d3cd28cd90edb40b13f03c1398ad00, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  anim: {fileID: 95354320349208854}
   movementSpeed: 20
   currentMovementSpeed: 0
   turnSpeed: 3
@@ -515,10 +525,10 @@ MonoBehaviour:
   left: 0
   right: 0
   down: 0
-  unreliabilityRate: 0.005
-  addNewUnreliableVectorEvery: 1
+  unreliabilityRate: 0.008
+  addNewUnreliableVectorEvery: 2
   unreliabilityAmount: 0
-  unreliabilityAmountMax: 0.08
+  unreliabilityAmountMax: 0.06
   camNoiseValue: 0
   camNoiseMaxValue: 4
   camNoiseCurrentValue: 0
