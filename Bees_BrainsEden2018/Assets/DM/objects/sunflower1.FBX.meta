@@ -20,6 +20,7 @@ ModelImporter:
     3300004: Cone001
     4300000: Cone001
     4300004: 001
+    9500000: //RootNode
   externalObjects: {}
   materials:
     importMaterials: 1
@@ -95,7 +96,7 @@ ModelImporter:
     hasExtraRoot: 0
     skeletonHasParents: 1
   lastHumanDescriptionAvatarSource: {instanceID: 0}
-  animationType: 0
+  animationType: 2
   humanoidOversampling: 1
   additionalBone: 0
   userData: 
