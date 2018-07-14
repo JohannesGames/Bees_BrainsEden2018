@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Cinemachine;
 
 public class MovementPC : MonoBehaviour
 {
@@ -11,7 +12,8 @@ public class MovementPC : MonoBehaviour
     [SerializeField] float acceleration;
     [SerializeField] float outOfBoundsResetSpeed;
     Vector3 moveDirection;
-    Vector3 intendedDirection;
+    Vector3 unreliableVector;
+    Vector3 unreliableDirection;
     Vector3 nextPosition;
     [HideInInspector]
     public Vector3 lerpTargetOOB = Vector3.zero;
@@ -27,9 +29,24 @@ public class MovementPC : MonoBehaviour
     public bool down;
     float movementDot;
 
+    [Header("Unreliable movement")]
+    public float unreliabilityRate;
+    public float addNewUnreliableVectorEvery;
+    float unreliableTime;
+    public float unreliabilityAmount;
+    public float unreliabilityAmountMax;
+    CinemachineBasicMultiChannelPerlin camNoiseComponent;
+    [Header("Camera")]
+    public float camNoiseValue;
+    public float camNoiseMaxValue;
+    public float camNoiseCurrentValue;
+    public float camNoiseUnreliabilityRate;
+
     void Start()
     {
-        moveDirection = intendedDirection = transform.TransformDirection(Vector3.forward);
+        moveDirection = transform.TransformDirection(Vector3.forward);
+        camNoiseComponent = GameManager.gm.playerCam.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
+        camNoiseValue = camNoiseCurrentValue = camNoiseComponent.m_AmplitudeGain;
     }
 
 
@@ -91,14 +108,12 @@ public class MovementPC : MonoBehaviour
         }
 
         ProcessDirectionInput();
-
-        moveDirection.Normalize();
     }
 
     void ProcessDirectionInput()
     {
         // if some input
-        if (down)    
+        if (down)
         {
             // ensure doesn't go too far down
             movementDot = Vector3.Dot(Vector3.down, moveDirection);
@@ -173,22 +188,63 @@ public class MovementPC : MonoBehaviour
                 moveDirection += Vector3.left * Time.deltaTime * resetAngleSpeed;
             }
         }
-
     }
 
     void TranslationPC()
     {
-        nextPosition = transform.position + (moveDirection * Time.deltaTime * movementSpeed);
+        AddUnreliableMovement();
+
+        moveDirection.Normalize();
+
+        nextPosition = transform.position + (moveDirection * Time.deltaTime * movementSpeed);   // normal movement
 
         movementSpeed += acceleration * Time.deltaTime;
 
-        //if (GameManager.gm.isOutOfBounds)
-        //{
-        //    lerpTargetOOB.z = transform.position.z;
-        //    nextPosition = Vector3.Lerp(nextPosition, lerpTargetOOB, Time.deltaTime * outOfBoundsResetSpeed);
-        //}
-
         transform.position = nextPosition;
+    }
+
+    void AddUnreliableMovement()
+    {
+        // add unreliable movement
+        if (unreliabilityRate > 0)
+        {
+            if (!GameManager.gm.isOutOfBounds)
+            {
+                if (unreliabilityAmount < unreliabilityAmountMax)
+                {
+                    unreliabilityAmount += Time.deltaTime * unreliabilityRate;
+
+                    // Camera noise
+                    if (camNoiseCurrentValue < camNoiseMaxValue)
+                    {
+                        camNoiseCurrentValue += Time.deltaTime * camNoiseUnreliabilityRate;
+                    }
+                    else
+                    {
+                        camNoiseCurrentValue = camNoiseMaxValue;
+                    }
+                    camNoiseComponent.m_AmplitudeGain = camNoiseCurrentValue;
+                }
+                else
+                {
+                    unreliabilityAmount = unreliabilityAmountMax;
+                }
+
+                if (Time.time >= unreliableTime)
+                {
+                    unreliableTime = Time.time + addNewUnreliableVectorEvery;
+                    unreliableVector = Vector3.left * Random.Range(-.5f, .5f) + Vector3.up * Random.Range(-.5f, .5f);
+                }
+                unreliableDirection = unreliableVector * unreliabilityAmount;
+                moveDirection += unreliableDirection;
+            }
+            //else
+            //{
+            //    unreliableDirection = Vector3.forward;
+            //    unreliableTime = Time.time + addNewUnreliableVectorEvery;
+            //    unreliabilityAmount *= .9f;
+            //}
+        }
     }
 
     #region Out of Bounds Return Coroutines
