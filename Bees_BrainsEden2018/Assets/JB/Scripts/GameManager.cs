@@ -40,7 +40,7 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         tilePool.CreateTilePool();
-        gl.SpawnGarden();
+        gl.SpawnFirstGarden();
     }
 
     void Update()
