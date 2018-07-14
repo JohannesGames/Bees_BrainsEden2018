@@ -16,6 +16,7 @@ public class GameManager : MonoBehaviour
     public GardenLoader gl;
 
     public GardenTilePool tilePool;
+    public GardenDividerPool dividerPool;
 
     // Boundaries
     [Header("Boundaries")]
@@ -40,6 +41,7 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         tilePool.CreateTilePool();
+        dividerPool.CreateDividerPool();
         gl.SpawnFirstGarden();
     }
 

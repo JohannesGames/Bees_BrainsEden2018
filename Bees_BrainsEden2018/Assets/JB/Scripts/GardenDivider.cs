@@ -4,18 +4,21 @@ using UnityEngine;
 
 public class GardenDivider : MonoBehaviour
 {
-    public bool isNext;
     public float checkFrequency = 5;
     public float loadNextGardenAtDistance = 200;
 
-    void Update()
+    void AddToPool()
     {
-        if (isNext)
+        GameManager.gm.dividerPool.AddToPool(this);
+    }
+
+    void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.layer == 9)
         {
-            if ((GameManager.gm.pc.transform.position - transform.position).sqrMagnitude < loadNextGardenAtDistance * loadNextGardenAtDistance)
-            {
-                Debug.Log("Load next garden");
-            }
+            // move to divider pool
+            Invoke("AddToPool", 2);
+            GameManager.gm.gl.SpawnNextTile();
         }
     }
 }

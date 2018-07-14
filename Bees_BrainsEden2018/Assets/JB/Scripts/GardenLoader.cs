@@ -20,10 +20,13 @@ public class GardenLoader : MonoBehaviour
         {
             nextTile = GameManager.gm.tilePool.GetGardenTile(Random.Range(0, GameManager.gm.tilePool.pooledTiles.Count));
             nextTile.transform.position = spawnLocation;
+            nextTile.transform.parent = null;
+            nextTile.gameObject.SetActive(true);
             spawnLocation.z += tileLength;
         }
-        nextDivider = Instantiate(allGardenDividers[Random.Range(0, allGardenDividers.Length)], spawnLocation, Quaternion.identity);
-        nextDivider.isNext = true;
+        nextDivider = Instantiate(GameManager.gm.dividerPool.GetDivider(Random.Range(0, GameManager.gm.dividerPool.pooledDividers.Count)), spawnLocation, Quaternion.identity);
+        nextDivider.transform.parent = null;
+        nextDivider.gameObject.SetActive(true);
         spawnLocation.z += dividerLength;
     }
 
@@ -34,13 +37,16 @@ public class GardenLoader : MonoBehaviour
             tilesSpawned++;
             nextTile = GameManager.gm.tilePool.GetGardenTile(Random.Range(0, GameManager.gm.tilePool.pooledTiles.Count));
             nextTile.transform.position = spawnLocation;
+            nextTile.transform.parent = null;
+            nextTile.gameObject.SetActive(true);
             spawnLocation.z += tileLength;
         }
         else
         {
             tilesSpawned = 0;
-            nextDivider = Instantiate(allGardenDividers[Random.Range(0, allGardenDividers.Length)], spawnLocation, Quaternion.identity);
-            nextDivider.isNext = true;
+            nextDivider = Instantiate(GameManager.gm.dividerPool.GetDivider(Random.Range(0, GameManager.gm.dividerPool.pooledDividers.Count)), spawnLocation, Quaternion.identity);
+            nextDivider.transform.parent = null;
+            nextDivider.gameObject.SetActive(true);
             spawnLocation.z += dividerLength;
         }
     }

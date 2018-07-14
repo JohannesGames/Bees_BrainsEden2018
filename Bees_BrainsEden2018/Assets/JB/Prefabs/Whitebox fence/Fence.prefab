@@ -20,6 +20,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4032757323665150}
   - component: {fileID: 114923439714549072}
+  - component: {fileID: 65701723712714938}
   m_Layer: 0
   m_Name: Fence
   m_TagString: Untagged
@@ -126,6 +127,18 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!65 &65701723712714938
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1159445713842444}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 132.91, y: 106.56, z: 1}
+  m_Center: {x: 0, y: 49.4, z: -2.86}
 --- !u!114 &114923439714549072
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -137,6 +150,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a54871be80e37d448c09834714aec8e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isNext: 0
   checkFrequency: 5
   loadNextGardenAtDistance: 200

@@ -17,12 +17,18 @@ public class GardenTile : MonoBehaviour
 
     }
 
+    void AddToPool()
+    {
+        GameManager.gm.tilePool.AddToPool(this);
+    }
+
     void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.layer == 9)
         {
             // move to tile pool
-            GameManager.gm.tilePool.AddToPool(this);
+            Invoke("AddToPool", 2);
+            GameManager.gm.gl.SpawnNextTile();
         }
     }
 }
