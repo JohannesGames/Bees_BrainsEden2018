@@ -309,7 +309,7 @@ public class MovementPC : MonoBehaviour
                     }
                     camNoiseComponent.m_AmplitudeGain = camNoiseCurrentValue;
                     // Camera FOV
-                    GameManager.gm.playerCam.m_Lens.FieldOfView = Mathf.Lerp(camFOVNormal, camMaxFOV, 1 -(camNoiseMaxValue - camNoiseCurrentValue) / (camNoiseMaxValue - camNoiseValue));
+                    GameManager.gm.playerCam.m_Lens.FieldOfView = Mathf.Lerp(camFOVNormal, camMaxFOV, 1 - (camNoiseMaxValue - camNoiseCurrentValue) / (camNoiseMaxValue - camNoiseValue));
                 }
                 else
                 {
@@ -324,12 +324,6 @@ public class MovementPC : MonoBehaviour
                 unreliableDirection = unreliableVector * unreliabilityAmount;
                 moveDirection += unreliableDirection;
             }
-            //else
-            //{
-            //    unreliableDirection = Vector3.forward;
-            //    unreliableTime = Time.time + addNewUnreliableVectorEvery;
-            //    unreliabilityAmount *= .9f;
-            //}
         }
     }
 
@@ -341,7 +335,11 @@ public class MovementPC : MonoBehaviour
         {
             yield return null;
         }
-        down = false;
+
+        if (!Input.GetKey(KeyCode.S))
+        {
+            down = false;
+        }
         GameManager.gm.isOutOfBounds = false;
     }
 
@@ -351,7 +349,11 @@ public class MovementPC : MonoBehaviour
         {
             yield return null;
         }
-        up = false;
+
+        if (!Input.GetKey(KeyCode.W))
+        {
+            up = false;
+        }
         GameManager.gm.isOutOfBounds = false;
     }
 
@@ -361,7 +363,11 @@ public class MovementPC : MonoBehaviour
         {
             yield return null;
         }
-        right = false;
+        
+        if (!Input.GetKey(KeyCode.D))
+        {
+            right = false;
+        }
         GameManager.gm.isOutOfBounds = false;
     }
 
@@ -371,7 +377,11 @@ public class MovementPC : MonoBehaviour
         {
             yield return null;
         }
-        left = false;
+        
+        if (!Input.GetKey(KeyCode.A))
+        {
+            left = false;
+        }
         GameManager.gm.isOutOfBounds = false;
     }
 
@@ -381,7 +391,6 @@ public class MovementPC : MonoBehaviour
 
     public void OnNectarPickup()
     {
-        Debug.Log("Nectar reset");
         isNectarResetting = true;
         nectarResetProgress = nectarResetTimer = 0;
         camNoiseLerpFromValue = camNoiseComponent.m_AmplitudeGain;
