@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine.Playables;
 using UnityEngine;
+using UnityEngine.UI;
 
 public enum GameState
 {
@@ -40,6 +41,19 @@ public class GameManager : MonoBehaviour
     public float boundaryRight;
     public bool isOutOfBounds;
 
+    [Header("UI")]
+    public Image fader;
+    public Color fadeInStartColour;
+    Color chosenFadeColour;
+    public float fadeLength = 1;
+    public float scoreValue;
+    public Text scoreText;
+
+    public RectTransform endScreen;
+    public Text scoreTextEndScreen;
+
+    public AudioSource mainMusic;
+
     void Awake()
     {
         if (gm)
@@ -58,6 +72,7 @@ public class GameManager : MonoBehaviour
         dividerPool.CreateDividerPool();
         flowerPool.CreateFlowerPool();
         gl.SpawnFirstGarden();
+        FadeIn(fadeInStartColour);
     }
 
     void Update()
@@ -78,6 +93,36 @@ public class GameManager : MonoBehaviour
         {
 
         }
+    }
+
+    public void OnDeath()
+    {
+        mainMusic.Stop();
+        gameState = GameState.EndScreen;
+        pc.anim.SetTrigger("onDeath");
+        pc.ResetVariables();
+        FadeOut();
+        Invoke("ShowEndScreen", fadeLength * 1.2f);
+        scoreText.gameObject.SetActive(false);
+        dividerPool.RecallDividers();
+        flowerPool.RecallDividers();
+        tilePool.RecallTiles();
+    }
+
+    public void ShowEndScreen()
+    {
+        endScreen.gameObject.SetActive(true);
+        scoreTextEndScreen.text = scoreValue.ToString();
+    }
+
+    void ResetLevel()
+    {
+        gameState = GameState.StartScreen;
+        pc.anim.SetTrigger("onReset");
+        endScreen.gameObject.SetActive(false);
+        startCam.Priority = 10;
+        playerCam.Priority = 1;
+        scoreValue = 0;
     }
 
     public void Respawn()
@@ -124,4 +169,63 @@ public class GameManager : MonoBehaviour
             }
         }
     }
+
+    #region Fading
+
+    public void FadeIn()
+    {
+        chosenFadeColour = Color.black;
+        StartCoroutine(FadeInCoroutine());
+    }
+
+    public void FadeIn(Color _col)
+    {
+        chosenFadeColour = _col;
+        StartCoroutine(FadeInCoroutine());
+    }
+
+
+    IEnumerator FadeInCoroutine()
+    {
+        float progress = 0;
+        float timer = 0;
+
+        while (progress < 1)
+        {
+            timer += Time.deltaTime;
+            progress = timer / fadeLength;
+            fader.color = Color.Lerp(chosenFadeColour, Color.clear, progress);
+
+            yield return null;
+        }
+    }
+
+    public void FadeOut()
+    {
+        chosenFadeColour = Color.black;
+        StartCoroutine(FadeOutCoroutine());
+    }
+
+    public void FadeOut(Color _col)
+    {
+        chosenFadeColour = _col;
+        StartCoroutine(FadeOutCoroutine());
+    }
+
+    IEnumerator FadeOutCoroutine()
+    {
+        float progress = 0;
+        float timer = 0;
+
+        while (progress < 1)
+        {
+            timer += Time.deltaTime;
+            progress = timer / fadeLength;
+            fader.color = Color.Lerp(Color.clear, chosenFadeColour, progress);
+
+            yield return null;
+        }
+    }
+
+    #endregion
 }

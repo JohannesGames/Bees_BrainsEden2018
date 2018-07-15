@@ -7,6 +7,7 @@ public class GardenDividerPool : MonoBehaviour
     [HideInInspector]
     public List<GardenDivider> pooledDividers = new List<GardenDivider>();
     GardenDivider selectedDivider;
+    public List<GardenDivider> placedDividers = new List<GardenDivider>();
 
 
     public void CreateDividerPool()
@@ -30,5 +31,14 @@ public class GardenDividerPool : MonoBehaviour
         _divider.transform.SetParent(transform);
         pooledDividers.Add(_divider);
         _divider.gameObject.SetActive(false);
+        placedDividers.Remove(_divider);
+    }
+
+    public void RecallDividers()
+    {
+        foreach (GardenDivider div in placedDividers)
+        {
+            AddToPool(div);
+        }
     }
 }

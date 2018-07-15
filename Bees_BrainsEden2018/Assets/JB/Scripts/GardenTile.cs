@@ -32,6 +32,7 @@ public class GardenTile : MonoBehaviour
                     placedFlowers.Add(positionIndex, GameManager.gm.flowerPool.GetFlower(Random.Range(0, GameManager.gm.flowerPool.pooledFlowers.Count)));
                     placedFlowers[positionIndex].transform.parent = null;
                     placedFlowers[positionIndex].gameObject.SetActive(true);
+                    GameManager.gm.flowerPool.placedFlowers.Add(placedFlowers[positionIndex]);
                 }
                 else
                 {

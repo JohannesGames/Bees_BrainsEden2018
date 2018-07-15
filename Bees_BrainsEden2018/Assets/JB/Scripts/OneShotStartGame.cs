@@ -11,6 +11,8 @@ public class OneShotStartGame : MonoBehaviour
         playerAnim.enabled = false;
         GameManager.gm.playerCam.Priority = 10;
         GameManager.gm.startCam.Priority = 1;
+        GameManager.gm.scoreText.gameObject.SetActive(true);
+        GameManager.gm.mainMusic.Play();
     }
 
 }
