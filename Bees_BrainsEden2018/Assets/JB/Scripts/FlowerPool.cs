@@ -11,10 +11,13 @@ public class FlowerPool : MonoBehaviour
 
     public void CreateFlowerPool()
     {
-        for (int i = 0; i < numberInPool; i++)
+        if (GameManager.gm.gl.allFlowers.Length > 0)
         {
-            pooledFlowers.Add(Instantiate(GameManager.gm.gl.allFlowers[Random.Range(0, GameManager.gm.gl.allFlowers.Length)], transform));
-            pooledFlowers[i].gameObject.SetActive(false);
+            for (int i = 0; i < numberInPool; i++)
+            {
+                pooledFlowers.Add(Instantiate(GameManager.gm.gl.allFlowers[Random.Range(0, GameManager.gm.gl.allFlowers.Length)], transform));
+                pooledFlowers[i].gameObject.SetActive(false);
+            }
         }
     }
 

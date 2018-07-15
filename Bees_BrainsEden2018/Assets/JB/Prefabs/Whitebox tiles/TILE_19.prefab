@@ -287,8 +287,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 99.59, y: 41.1, z: 1}
-  m_Center: {x: 0, y: 20.4, z: 20}
+  m_Size: {x: 99.59, y: 80, z: 1}
+  m_Center: {x: 0, y: 39, z: 20}
 --- !u!65 &65235121091582734
 BoxCollider:
   m_ObjectHideFlags: 1
@@ -324,3 +324,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6746fdfd487570942a487b07906bddcf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  tyleType: 0
+  flowerPositions: []

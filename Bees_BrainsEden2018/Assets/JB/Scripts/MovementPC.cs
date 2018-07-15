@@ -17,7 +17,8 @@ public class MovementPC : MonoBehaviour
     [SerializeField] float acceleration;
     [SerializeField] float outOfBoundsResetSpeed;
     Vector3 moveDirection;
-    Vector3 unreliableVector;
+    Vector3 unreliableVectorLeft;
+    Vector3 unreliableVectorUp;
     Vector3 unreliableDirection;
     Vector3 nextPosition;
     [HideInInspector]
@@ -36,20 +37,24 @@ public class MovementPC : MonoBehaviour
 
     [Header("Unreliable movement")]
     public float unreliabilityRate;
-    public float addNewUnreliableVectorEvery;
+    public float addNewUnreliableVectorOver;
     float unreliableTime;
+    float unreliableProgress;
+    public float unreliabilityAmountCurrent;
     public float unreliabilityAmount;
     float unreliabilityAmountLerpFromValue;
     public float unreliabilityAmountMax;
     CinemachineBasicMultiChannelPerlin camNoiseComponent;
     [Header("Camera Noise")]
     public float camNoiseValue;
+    float camNoiseValueNext;
     public float camNoiseMaxValue;
     public float camNoiseCurrentValue;
     public float camNoiseUnreliabilityRate;
     float camNoiseLerpFromValue;
     [Header("Camera FOV")]
     public float camMaxFOV;
+    float camFOVNext;
     public float currentCamFOV;
     float camFOVLerpValue;
     float camFOVNormal;
@@ -298,37 +303,64 @@ public class MovementPC : MonoBehaviour
         {
             if (!GameManager.gm.isOutOfBounds)
             {
-                if (unreliabilityAmount < unreliabilityAmountMax)
+                CamNoise();
+                if (unreliableTime == 0)
                 {
-                    unreliabilityAmount += Time.deltaTime * unreliabilityRate;
-
-                    // Camera noise
-                    if (camNoiseCurrentValue < camNoiseMaxValue)
+                    if (unreliabilityAmount < unreliabilityAmountMax)
                     {
-                        camNoiseCurrentValue += Time.deltaTime * camNoiseUnreliabilityRate;
+                        unreliabilityAmount += Time.deltaTime * unreliabilityRate;
                     }
                     else
                     {
-                        camNoiseCurrentValue = camNoiseMaxValue;
+                        unreliabilityAmount = unreliabilityAmountMax;
                     }
-                    camNoiseComponent.m_AmplitudeGain = camNoiseCurrentValue;
-                    // Camera FOV
-                    GameManager.gm.playerCam.m_Lens.FieldOfView = Mathf.Lerp(camFOVNormal, camMaxFOV, 1 - (camNoiseMaxValue - camNoiseCurrentValue) / (camNoiseMaxValue - camNoiseValue));
+                    unreliableVectorLeft = Vector3.left * Random.Range(0, .5f);
+                    if (unreliableVectorLeft.sqrMagnitude > .0625f)
+                    {
+                        unreliableVectorLeft *= -1;
+                    }
+                    unreliableVectorUp = Vector3.up * Random.Range(0, .5f);
+                    if (unreliableVectorUp.sqrMagnitude > .0625f)
+                    {
+                        unreliableVectorUp *= -1;
+                    }
+                    unreliableDirection = unreliableVectorUp + unreliableVectorLeft;
+                }
+
+                unreliableTime += Time.deltaTime;
+
+                if (unreliableProgress < 1)
+                {
+                    unreliableProgress = unreliableTime / addNewUnreliableVectorOver;
+                    unreliabilityAmountCurrent = Mathf.Lerp(0, unreliabilityAmount, unreliableProgress);
                 }
                 else
                 {
-                    unreliabilityAmount = unreliabilityAmountMax;
+                    unreliableTime = unreliableProgress = 0;
                 }
 
-                if (Time.time >= unreliableTime)
-                {
-                    unreliableTime = Time.time + addNewUnreliableVectorEvery;
-                    unreliableVector = Vector3.left * Random.Range(-.5f, .5f) + Vector3.up * Random.Range(-.5f, .5f);
-                }
-                unreliableDirection = unreliableVector * unreliabilityAmount;
-                moveDirection += unreliableDirection;
+                moveDirection += unreliableDirection * unreliabilityAmount;
+            }
+            else
+            {
+                unreliableTime = unreliableProgress = 0;
             }
         }
+    }
+
+    void CamNoise()
+    {
+        if (unreliableTime == 0)
+        {
+            camNoiseValueNext = Mathf.Lerp(camNoiseCurrentValue, camNoiseMaxValue, unreliabilityAmount / unreliabilityAmountMax);
+            camFOVNext = Mathf.Lerp(camFOVNormal, camMaxFOV, unreliabilityAmount / unreliabilityAmountMax);
+        }
+        // Camera noise
+        camNoiseCurrentValue = Mathf.Lerp(camNoiseCurrentValue, camNoiseValueNext, Time.deltaTime);
+        camNoiseComponent.m_AmplitudeGain = camNoiseCurrentValue;
+
+        // Camera FOV
+        GameManager.gm.playerCam.m_Lens.FieldOfView = Mathf.Lerp(GameManager.gm.playerCam.m_Lens.FieldOfView, camFOVNext, Time.deltaTime);
     }
 
     #region Out of Bounds Return Coroutines
@@ -367,7 +399,7 @@ public class MovementPC : MonoBehaviour
         {
             yield return null;
         }
-        
+
         if (!Input.GetKey(KeyCode.D))
         {
             right = false;
@@ -381,7 +413,7 @@ public class MovementPC : MonoBehaviour
         {
             yield return null;
         }
-        
+
         if (!Input.GetKey(KeyCode.A))
         {
             left = false;
@@ -399,6 +431,7 @@ public class MovementPC : MonoBehaviour
         nectarResetProgress = nectarResetTimer = 0;
         camNoiseLerpFromValue = camNoiseComponent.m_AmplitudeGain;
         camFOVLerpValue = GameManager.gm.playerCam.m_Lens.FieldOfView;
+        unreliableDirection = Vector3.forward;
         StartCoroutine(NectarReset());
     }
 
@@ -409,9 +442,9 @@ public class MovementPC : MonoBehaviour
             nectarResetTimer += Time.deltaTime;
             nectarResetProgress = nectarResetTimer / nectarResetLength;
 
-            camNoiseComponent.m_AmplitudeGain = camNoiseCurrentValue = Mathf.Lerp(camNoiseLerpFromValue, camNoiseValue, resetCurve.Evaluate(nectarResetProgress));
+            camNoiseComponent.m_AmplitudeGain = camNoiseCurrentValue = camNoiseValueNext = Mathf.Lerp(camNoiseLerpFromValue, camNoiseValue, resetCurve.Evaluate(nectarResetProgress));
             unreliabilityAmount = Mathf.Lerp(unreliabilityAmountLerpFromValue, 0, resetCurve.Evaluate(nectarResetProgress));
-            GameManager.gm.playerCam.m_Lens.FieldOfView = Mathf.Lerp(camFOVLerpValue, camFOVNormal, resetCurve.Evaluate(nectarResetProgress));
+            GameManager.gm.playerCam.m_Lens.FieldOfView = camFOVNext = Mathf.Lerp(camFOVLerpValue, camFOVNormal, resetCurve.Evaluate(nectarResetProgress));
             yield return null;
         }
 
