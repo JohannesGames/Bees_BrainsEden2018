@@ -7,6 +7,7 @@ public class FlowerPool : MonoBehaviour
     public int numberInPool = 10;
     [HideInInspector]
     public List<FlowerPower> pooledFlowers = new List<FlowerPower>();
+    public List<FlowerPower> placedFlowers = new List<FlowerPower>();
     FlowerPower selectedFlower;
 
     public void CreateFlowerPool()
@@ -33,5 +34,14 @@ public class FlowerPool : MonoBehaviour
         _flower.transform.SetParent(transform);
         pooledFlowers.Add(_flower);
         _flower.gameObject.SetActive(false);
+        placedFlowers.Remove(_flower);
+    }
+
+    public void RecallDividers()
+    {
+        foreach (FlowerPower flower in placedFlowers)
+        {
+            AddToPool(flower);
+        }
     }
 }

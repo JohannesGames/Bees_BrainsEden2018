@@ -6,6 +6,7 @@ public class GardenTilePool : MonoBehaviour
 {
     [HideInInspector]
     public List<GardenTile> pooledTiles = new List<GardenTile>();
+    public List<GardenTile> placedTiles = new List<GardenTile>();
     GardenTile selectedTile;
 
     public void CreateTilePool()
@@ -29,5 +30,14 @@ public class GardenTilePool : MonoBehaviour
         _tile.transform.SetParent(transform);
         pooledTiles.Add(_tile);
         _tile.gameObject.SetActive(false);
+        placedTiles.Add(_tile);
+    }
+
+    public void RecallTiles()
+    {
+        foreach (GardenTile tile in placedTiles)
+        {
+            AddToPool(tile);
+        }
     }
 }

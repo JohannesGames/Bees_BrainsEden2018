@@ -32,6 +32,7 @@ public class GardenLoader : MonoBehaviour
                 nextTile.transform.position = spawnLocation;
                 nextTile.transform.parent = null;
                 nextTile.gameObject.SetActive(true);
+                GameManager.gm.tilePool.placedTiles.Add(nextTile);
                 spawnLocation.z += tileLength;
                 if (nextTile.tyleType == GardenTile.TyleType.Heavy)
                 {
@@ -46,6 +47,7 @@ public class GardenLoader : MonoBehaviour
         nextDivider = Instantiate(GameManager.gm.dividerPool.GetDivider(Random.Range(0, GameManager.gm.dividerPool.pooledDividers.Count)), spawnLocation, Quaternion.identity);
         nextDivider.transform.parent = null;
         nextDivider.gameObject.SetActive(true);
+        GameManager.gm.dividerPool.placedDividers.Add(nextDivider);
         spawnLocation.z += dividerLength;
     }
 

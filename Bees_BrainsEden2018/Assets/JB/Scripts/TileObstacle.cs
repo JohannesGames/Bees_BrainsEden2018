@@ -9,6 +9,7 @@ public class TileObstacle : MonoBehaviour
         if (other.gameObject.layer == 9)
         {
             Debug.Log("Player hit obstacle - death time!");
+            GameManager.gm.OnDeath();
         }
     }
 }

@@ -5,12 +5,13 @@ using Cinemachine;
 
 public class MovementPC : MonoBehaviour
 {
-    [SerializeField] Animator anim;
+    public Animator anim;
     [SerializeField] Transform groundPlane;
 
     [Header("Basic movement")]
     [SerializeField] float movementSpeed;
     [SerializeField] float currentMovementSpeed;
+    float movementSpeedLerpValue;
     [SerializeField] float turnSpeed;
     [Tooltip("How fast an angle of direction resets when the button is released")]
     [SerializeField] float resetAngleSpeed;
@@ -66,6 +67,9 @@ public class MovementPC : MonoBehaviour
     float nectarResetProgress;
     bool isNectarResetting;
 
+    // score
+    float gameTimer = 0;
+
     void Start()
     {
         moveDirection = transform.TransformDirection(Vector3.forward);
@@ -80,8 +84,13 @@ public class MovementPC : MonoBehaviour
     {
         if (GameManager.gm.gameState == GameState.InGame)
         {
+            UpdateScore();
             InputManager();
             TranslationPC();
+        }
+        else
+        {
+            gameTimer = 0;
         }
     }
 
@@ -137,6 +146,18 @@ public class MovementPC : MonoBehaviour
         }
 
         ProcessDirectionInput();
+    }
+
+    void UpdateScore()
+    {
+        gameTimer += Time.deltaTime;
+
+        if (gameTimer >= 1)
+        {
+            GameManager.gm.scoreValue += 10;
+            GameManager.gm.scoreText.text = GameManager.gm.scoreValue.ToString();
+            gameTimer = 0;
+        }
     }
 
     void ProcessDirectionInput()
@@ -449,6 +470,7 @@ public class MovementPC : MonoBehaviour
 
             camNoiseComponent.m_AmplitudeGain = camNoiseCurrentValue = camNoiseValueNext = Mathf.Lerp(camNoiseLerpFromValue, camNoiseValue, resetCurve.Evaluate(nectarResetProgress));
             unreliabilityAmount = Mathf.Lerp(unreliabilityAmountLerpFromValue, 0, resetCurve.Evaluate(nectarResetProgress));
+            currentMovementSpeed = Mathf.Lerp(movementSpeedLerpValue, movementSpeed, resetCurve.Evaluate(nectarResetProgress));
             GameManager.gm.playerCam.m_Lens.FieldOfView = camFOVNext = Mathf.Lerp(camFOVLerpValue, camFOVNormal, resetCurve.Evaluate(nectarResetProgress));
             yield return null;
         }
@@ -457,4 +479,12 @@ public class MovementPC : MonoBehaviour
     }
 
     #endregion
+
+    public void ResetVariables()
+    {
+        camNoiseComponent.m_AmplitudeGain = camNoiseCurrentValue = camNoiseValueNext = camNoiseValue;
+        unreliabilityAmount = 0;
+        currentMovementSpeed = movementSpeed;
+        GameManager.gm.playerCam.m_Lens.FieldOfView = camFOVNext = camFOVNormal;
+    }
 }
