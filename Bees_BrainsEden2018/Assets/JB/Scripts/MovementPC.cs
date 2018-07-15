@@ -78,8 +78,11 @@ public class MovementPC : MonoBehaviour
 
     void Update()
     {
-        InputManager();
-        TranslationPC();
+        if (GameManager.gm.gameState == GameState.InGame)
+        {
+            InputManager();
+            TranslationPC();
+        }
     }
 
     void InputManager()
@@ -314,13 +317,15 @@ public class MovementPC : MonoBehaviour
                     {
                         unreliabilityAmount = unreliabilityAmountMax;
                     }
-                    unreliableVectorLeft = Vector3.left * Random.Range(0, .5f);
-                    if (unreliableVectorLeft.sqrMagnitude > .0625f)
+                    unreliableVectorLeft = Vector3.left * Random.Range(.25f, .5f);
+                    int ran = Random.Range(0, 2);
+                    if (ran == 1)
                     {
                         unreliableVectorLeft *= -1;
                     }
-                    unreliableVectorUp = Vector3.up * Random.Range(0, .5f);
-                    if (unreliableVectorUp.sqrMagnitude > .0625f)
+                    unreliableVectorUp = Vector3.up * Random.Range(.25f, .5f);
+                    ran = Random.Range(0, 2);
+                    if (ran == 1)
                     {
                         unreliableVectorUp *= -1;
                     }

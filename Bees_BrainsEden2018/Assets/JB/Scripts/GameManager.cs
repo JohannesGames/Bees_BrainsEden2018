@@ -1,6 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.Playables;
 using UnityEngine;
+
+public enum GameState
+{
+    StartScreen,
+    InGame,
+    EndScreen
+}
 
 public class GameManager : MonoBehaviour
 {
@@ -10,6 +18,9 @@ public class GameManager : MonoBehaviour
     public MovementPC pc;
 
     public Cinemachine.CinemachineVirtualCamera playerCam;
+    public Cinemachine.CinemachineVirtualCamera startCam;
+    public bool playingTimeline;
+    public PlayableDirector startTimeline;
 
     public LayerMask pcLayer;
 
@@ -18,6 +29,8 @@ public class GameManager : MonoBehaviour
     public GardenTilePool tilePool;
     public GardenDividerPool dividerPool;
     public FlowerPool flowerPool;
+
+    public GameState gameState;
 
     // Boundaries
     [Header("Boundaries")]
@@ -49,7 +62,22 @@ public class GameManager : MonoBehaviour
 
     void Update()
     {
-        CheckBoundaries();
+
+        if (gameState == GameState.StartScreen)
+        {
+            if (!playingTimeline && Input.GetKeyDown(KeyCode.B))
+            {
+                startTimeline.Play();
+            }
+        }
+        else if (gameState == GameState.InGame)
+        {
+            CheckBoundaries();
+        }
+        else if (gameState == GameState.EndScreen)
+        {
+
+        }
     }
 
     public void Respawn()
