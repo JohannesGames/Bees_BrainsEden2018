@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<< Updated upstream
 guid: 29a7a522b8f9c7f4ab1b87239c984227
+=======
+guid: f408d35b584174446873a799c5e5539a
+>>>>>>> Stashed changes
 ModelImporter:
   serializedVersion: 22
   fileIDToRecycleName:
@@ -9,6 +13,10 @@ ModelImporter:
     2300000: //RootNode
     3300000: //RootNode
     4300000: Tube001
+<<<<<<< Updated upstream
+=======
+    6400000: //RootNode
+>>>>>>> Stashed changes
   externalObjects: {}
   materials:
     importMaterials: 1
@@ -42,7 +50,11 @@ ModelImporter:
     lODScreenPercentages: []
     globalScale: 1
     meshCompression: 0
+<<<<<<< Updated upstream
     addColliders: 0
+=======
+    addColliders: 1
+>>>>>>> Stashed changes
     importVisibility: 1
     importBlendShapes: 1
     importCameras: 1

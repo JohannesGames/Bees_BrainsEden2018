@@ -21,6 +21,9 @@ ModelImporter:
     4300000: Cone002
     4300002: Box001
     4300004: Cone001
+    6400000: Box001
+    6400002: Cone001
+    6400004: Cone002
   externalObjects: {}
   materials:
     importMaterials: 1
@@ -54,7 +57,7 @@ ModelImporter:
     lODScreenPercentages: []
     globalScale: 1
     meshCompression: 0
-    addColliders: 0
+    addColliders: 1
     importVisibility: 1
     importBlendShapes: 1
     importCameras: 1
