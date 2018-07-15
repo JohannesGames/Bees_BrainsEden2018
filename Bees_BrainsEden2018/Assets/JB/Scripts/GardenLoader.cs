@@ -14,6 +14,7 @@ public class GardenLoader : MonoBehaviour
     GardenTile nextTile;
     int tilesSpawned = 0;
     int heavyTileCountdown = 0;
+    public FlowerPower[] allFlowers;
 
     public void SpawnFirstGarden()
     {

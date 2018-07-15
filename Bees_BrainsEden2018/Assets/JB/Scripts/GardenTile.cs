@@ -12,16 +12,38 @@ public class GardenTile : MonoBehaviour
 
     public TyleType tyleType;
 
-    // Use this for initialization
-    void Start()
+    public Transform[] flowerPositions;
+    Dictionary< int, FlowerPower> placedFlowers = new Dictionary<int, FlowerPower>();
+    int numberOfFlowers;
+    int positionIndex;
+
+    public void OnEnable()
     {
+        numberOfFlowers = Random.Range(0, flowerPositions.Length);
 
-    }
+        for (int i = 0; i < numberOfFlowers; i++)
+        {
+            if (GameManager.gm.flowerPool.pooledFlowers.Count > 0)
+            {
+                positionIndex = Random.Range(0, flowerPositions.Length);
 
-    // Update is called once per frame
-    void Update()
-    {
-
+                if (!placedFlowers.ContainsKey(positionIndex))
+                {
+                    placedFlowers.Add(positionIndex, GameManager.gm.flowerPool.GetFlower(Random.Range(0, GameManager.gm.flowerPool.pooledFlowers.Count)));
+                    placedFlowers[positionIndex].transform.parent = null;
+                    placedFlowers[positionIndex].gameObject.SetActive(true);
+                }
+                else
+                {
+                    // pick another position
+                    i--;
+                }
+            }
+            else
+            {
+                break;
+            }
+        }
     }
 
     void AddToPool()
