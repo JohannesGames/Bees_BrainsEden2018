@@ -1,34 +1,27 @@
 fileFormatVersion: 2
-guid: 30e86210f4e2f7346add44eb907933f2
+guid: 7c423b8cc9c8bb24c8db3af16d1d61bf
 ModelImporter:
   serializedVersion: 22
   fileIDToRecycleName:
-    100000: Plane001
-    100002: Plane002
-    100004: Plane003
-    100006: //RootNode
-    400000: Plane001
-    400002: Plane002
-    400004: Plane003
-    400006: //RootNode
-    2100000: 'Material #25'
-    2100002: 'Material #26'
-    2300000: Plane001
-    2300002: Plane002
-    2300004: Plane003
-    3300000: Plane001
-    3300002: Plane002
-    3300004: Plane003
-    4300000: Plane001
-    4300002: Plane002
-    4300004: Plane003
-    9500000: //RootNode
+    100000: Hedra001
+    100002: Hedra002
+    100004: //RootNode
+    400000: Hedra001
+    400002: Hedra002
+    400004: //RootNode
+    2100000: No Name
+    2300000: Hedra001
+    2300002: Hedra002
+    3300000: Hedra001
+    3300002: Hedra002
+    4300000: Hedra001
+    4300002: Hedra002
   externalObjects: {}
   materials:
     importMaterials: 1
     materialName: 0
     materialSearch: 1
-    materialLocation: 0
+    materialLocation: 1
   animations:
     legacyGenerateAnimations: 4
     bakeSimulation: 0
@@ -98,7 +91,7 @@ ModelImporter:
     hasExtraRoot: 0
     skeletonHasParents: 1
   lastHumanDescriptionAvatarSource: {instanceID: 0}
-  animationType: 2
+  animationType: 0
   humanoidOversampling: 1
   additionalBone: 0
   userData: 

@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 30e86210f4e2f7346add44eb907933f2
+guid: 2b673d37b3baf434398d24902c083fbb
 ModelImporter:
   serializedVersion: 22
   fileIDToRecycleName:
@@ -22,13 +22,12 @@ ModelImporter:
     4300000: Plane001
     4300002: Plane002
     4300004: Plane003
-    9500000: //RootNode
   externalObjects: {}
   materials:
     importMaterials: 1
     materialName: 0
     materialSearch: 1
-    materialLocation: 0
+    materialLocation: 1
   animations:
     legacyGenerateAnimations: 4
     bakeSimulation: 0
@@ -98,7 +97,7 @@ ModelImporter:
     hasExtraRoot: 0
     skeletonHasParents: 1
   lastHumanDescriptionAvatarSource: {instanceID: 0}
-  animationType: 2
+  animationType: 0
   humanoidOversampling: 1
   additionalBone: 0
   userData: 
