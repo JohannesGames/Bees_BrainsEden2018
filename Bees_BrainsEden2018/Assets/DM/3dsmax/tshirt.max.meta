@@ -1,21 +1,14 @@
 fileFormatVersion: 2
-guid: ae0a8be66e9c7e849b4fb40c87bd3f87
+guid: 3a3ec737b9b38374ba817d38a7de1245
 ModelImporter:
   serializedVersion: 22
   fileIDToRecycleName:
-    100000: Hedra001
-    100002: Hedra002
-    100004: //RootNode
-    400000: Hedra001
-    400002: Hedra002
-    400004: //RootNode
+    100000: //RootNode
+    400000: //RootNode
     2100000: No Name
-    2300000: Hedra001
-    2300002: Hedra002
-    3300000: Hedra001
-    3300002: Hedra002
-    4300000: Hedra001
-    4300002: Hedra002
+    2300000: //RootNode
+    3300000: //RootNode
+    4300000: Tube001
   externalObjects: {}
   materials:
     importMaterials: 1

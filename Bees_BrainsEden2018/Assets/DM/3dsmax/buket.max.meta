@@ -1,14 +1,26 @@
 fileFormatVersion: 2
-guid: a2188e91349c17041b490148f010bc2a
+guid: 453a07d0819fdcf45959698c5a8eb934
 ModelImporter:
   serializedVersion: 22
   fileIDToRecycleName:
-    100000: //RootNode
-    400000: //RootNode
+    100000: Box001
+    100002: //RootNode
+    100004: Cone001
+    100006: Cone002
+    400000: Box001
+    400002: //RootNode
+    400004: Cone001
+    400006: Cone002
     2100000: No Name
-    2300000: //RootNode
-    3300000: //RootNode
-    4300000: StraightStair001
+    2300000: Box001
+    2300002: Cone001
+    2300004: Cone002
+    3300000: Box001
+    3300002: Cone001
+    3300004: Cone002
+    4300000: Cone002
+    4300002: Box001
+    4300004: Cone001
   externalObjects: {}
   materials:
     importMaterials: 1
