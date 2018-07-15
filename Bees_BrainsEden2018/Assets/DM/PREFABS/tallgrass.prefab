@@ -208,6 +208,8 @@ GameObject:
   - component: {fileID: 4399367848635430}
   - component: {fileID: 114422132390384168}
   - component: {fileID: 65402658646058848}
+  - component: {fileID: 114729212966384960}
+  - component: {fileID: 65742897317711984}
   m_Layer: 0
   m_Name: tallgrass
   m_TagString: Untagged
@@ -856,7 +858,30 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!65 &65742897317711984
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1984508198546342}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &114422132390384168
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1984508198546342}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 58729266f89ee614d826f325d1ecfa46, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &114729212966384960
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}

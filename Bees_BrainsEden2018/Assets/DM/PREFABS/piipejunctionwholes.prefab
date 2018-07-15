@@ -22,6 +22,7 @@ GameObject:
   - component: {fileID: 33511398690790856}
   - component: {fileID: 23291660678327662}
   - component: {fileID: 95053469488633890}
+  - component: {fileID: 114245912422605206}
   m_Layer: 0
   m_Name: piipejunctionwholes
   m_TagString: Untagged
@@ -102,3 +103,14 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &114245912422605206
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1361045844964560}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 58729266f89ee614d826f325d1ecfa46, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

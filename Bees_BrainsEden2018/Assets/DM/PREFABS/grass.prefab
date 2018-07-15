@@ -283,6 +283,8 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4240624899481040}
+  - component: {fileID: 114106670539296574}
+  - component: {fileID: 65379562094960502}
   m_Layer: 0
   m_Name: grass
   m_TagString: Untagged
@@ -394,7 +396,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1790990410811210}
   m_LocalRotation: {x: -0, y: -0.41028035, z: -0, w: 0.91195947}
-  m_LocalPosition: {x: 35.70241, y: -4.033785, z: 35.227234}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 8.058909, y: 5.4558496, z: 1}
   m_Children:
   - {fileID: 4774285109248852}
@@ -1118,3 +1120,26 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1486539056884370}
   m_Mesh: {fileID: 4300002, guid: de549b12155bf0443b52d38c64f259b7, type: 3}
+--- !u!65 &65379562094960502
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1790990410811210}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &114106670539296574
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1790990410811210}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 58729266f89ee614d826f325d1ecfa46, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

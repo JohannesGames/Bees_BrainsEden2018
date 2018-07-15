@@ -22,6 +22,7 @@ GameObject:
   - component: {fileID: 33476673735630658}
   - component: {fileID: 23709108678392394}
   - component: {fileID: 64377455207795234}
+  - component: {fileID: 65813783171974594}
   m_Layer: 0
   m_Name: Ground_for_fences
   m_TagString: Untagged
@@ -98,3 +99,15 @@ MeshCollider:
   m_CookingOptions: 14
   m_SkinWidth: 0.01
   m_Mesh: {fileID: 4300000, guid: 2621146471e9c1649b0b00bcc312c5ab, type: 3}
+--- !u!65 &65813783171974594
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1562906506777242}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 20, y: 100, z: 0.29084116}
+  m_Center: {x: 0, y: 0, z: 0.0006519109}

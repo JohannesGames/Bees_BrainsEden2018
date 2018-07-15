@@ -253,6 +253,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4797418277583160}
+  - component: {fileID: 65409966637272578}
   m_Layer: 0
   m_Name: Spider_swing
   m_TagString: Untagged
@@ -1784,6 +1785,18 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1299679608270298}
   m_Mesh: {fileID: 4300002, guid: ec88e9e9c8e2ec9428df1d48d997d600, type: 3}
+--- !u!65 &65409966637272578
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1458051207483292}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!65 &65948797600668550
 BoxCollider:
   m_ObjectHideFlags: 1
