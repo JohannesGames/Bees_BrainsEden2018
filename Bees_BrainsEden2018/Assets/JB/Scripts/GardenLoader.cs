@@ -13,16 +13,34 @@ public class GardenLoader : MonoBehaviour
     public GardenDivider nextDivider;
     GardenTile nextTile;
     int tilesSpawned = 0;
+    int heavyTileCountdown = 0;
 
     public void SpawnFirstGarden()
     {
         for (int i = 0; i < tilesPerGarden; i++)
         {
             nextTile = GameManager.gm.tilePool.GetGardenTile(Random.Range(0, GameManager.gm.tilePool.pooledTiles.Count));
-            nextTile.transform.position = spawnLocation;
-            nextTile.transform.parent = null;
-            nextTile.gameObject.SetActive(true);
-            spawnLocation.z += tileLength;
+
+            if (heavyTileCountdown > 0 && nextTile.tyleType == GardenTile.TyleType.Heavy)
+            {
+                // get another tile
+                i--;
+            }
+            else
+            {
+                nextTile.transform.position = spawnLocation;
+                nextTile.transform.parent = null;
+                nextTile.gameObject.SetActive(true);
+                spawnLocation.z += tileLength;
+                if (nextTile.tyleType == GardenTile.TyleType.Heavy)
+                {
+                    heavyTileCountdown = 4;
+                }
+                else
+                {
+                    heavyTileCountdown--;
+                }
+            }
         }
         nextDivider = Instantiate(GameManager.gm.dividerPool.GetDivider(Random.Range(0, GameManager.gm.dividerPool.pooledDividers.Count)), spawnLocation, Quaternion.identity);
         nextDivider.transform.parent = null;
@@ -35,11 +53,30 @@ public class GardenLoader : MonoBehaviour
         if (tilesSpawned < tilesPerGarden)
         {
             tilesSpawned++;
-            nextTile = GameManager.gm.tilePool.GetGardenTile(Random.Range(0, GameManager.gm.tilePool.pooledTiles.Count));
-            nextTile.transform.position = spawnLocation;
-            nextTile.transform.parent = null;
-            nextTile.gameObject.SetActive(true);
-            spawnLocation.z += tileLength;
+            for (int i = 0; i < 1; i++)
+            {
+                nextTile = GameManager.gm.tilePool.GetGardenTile(Random.Range(0, GameManager.gm.tilePool.pooledTiles.Count));
+                if (heavyTileCountdown > 0 && nextTile.tyleType == GardenTile.TyleType.Heavy)
+                {
+                    // get another tile
+                    i--;
+                }
+                else
+                {
+                    nextTile.transform.position = spawnLocation;
+                    nextTile.transform.parent = null;
+                    nextTile.gameObject.SetActive(true);
+                    spawnLocation.z += tileLength;
+                    if (nextTile.tyleType == GardenTile.TyleType.Heavy)
+                    {
+                        heavyTileCountdown = 4;
+                    }
+                    else
+                    {
+                        heavyTileCountdown--;
+                    }
+                }
+            }
         }
         else
         {

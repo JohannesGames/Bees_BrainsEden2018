@@ -4,6 +4,13 @@ using UnityEngine;
 
 public class GardenTile : MonoBehaviour
 {
+    public enum TyleType
+    {
+        Heavy,
+        Light
+    }
+
+    public TyleType tyleType;
 
     // Use this for initialization
     void Start()
